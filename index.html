@@ -1,0 +1,1492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexora</title>
+    <link rel="stylesheet" href="style.css">
+   
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f6fa;
+            color: #222;
+        }
+
+        /* LOGIN */
+
+        .login-page {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #000000bd, #9856db);
+        }
+
+        .login-box {
+            background: rgba(238, 181, 252, 0.687);
+            width: 400px;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .login-box h1 {
+            text-align: center;
+            color: #750771;
+            margin-bottom: 10px;
+        }
+
+        .login-box p {
+            text-align: center;
+            color: #f7eded;
+            margin-bottom: 25px;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            outline: none;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            border-color: #6c0a83;
+        }
+
+        button {
+            border: none;
+            padding: 11px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            background: #751486;
+            color: white;
+            font-weight: bold;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        /* APP */
+
+        .app {
+            display: none;
+        }
+
+        /* NAVBAR */
+
+        .navbar {
+            height: 65px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+            border-bottom: 1px solid #ddd;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #7c2499;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 8px;
+        }
+
+        .nav-links button {
+            background: transparent;
+            color: #333;
+        }
+
+        .nav-links button:hover {
+            background: #eee;
+            color: #5b5be7;
+        }
+
+        /* CONTAINER */
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 30px;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .page-title {
+            margin-bottom: 20px;
+        }
+
+        /* SEARCH */
+
+        .search-box {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .search-box input {
+            margin: 0;
+        }
+
+        /* FILTERS */
+
+        .filters {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .filter {
+            background: white;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .filter.active {
+            background: #5b5be7;
+            color: white;
+        }
+
+        /* CARDS */
+
+        .opportunity-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+        }
+
+        .card h3 {
+            margin: 8px 0;
+        }
+
+        .card p {
+            color: #666;
+            margin: 8px 0;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .paid {
+            background: #e4f8e9;
+            color: #16853b;
+        }
+
+        .volunteer {
+            background: #e5efff;
+            color: #2865c7;
+        }
+
+        .emergency {
+            background: #ffe5e5;
+            color: #d92323;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+
+        /* PROFILE */
+
+        .profile-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 700px;
+        }
+
+        .profile-photo {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 35px;
+            margin-bottom: 15px;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .skill {
+            background: #eee;
+            padding: 7px 12px;
+            border-radius: 20px;
+        }
+
+        /* FORM */
+
+        .form-card {
+            background: white;
+            padding: 25px;
+            max-width: 700px;
+            border-radius: 15px;
+        }
+
+        /* CHAT */
+
+        .chat-container {
+            background: white;
+            max-width: 700px;
+            padding: 20px;
+            border-radius: 15px;
+        }
+
+        .messages {
+            height: 350px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .message {
+            background: #eee;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 10px;
+            max-width: 70%;
+        }
+
+        .message.mine {
+            background: #5b5be7;
+            color: white;
+            margin-left: auto;
+        }
+
+        .chat-input {
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input input {
+            margin: 0;
+        }
+
+        /* RESPONSIVE */
+
+        @media(max-width: 700px) {
+
+            .navbar {
+                padding: 0 10px;
+            }
+
+            .logo {
+                font-size: 18px;
+            }
+
+            .nav-links {
+                gap: 2px;
+            }
+
+            .nav-links button {
+                padding: 7px;
+                font-size: 11px;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            .login-box {
+                width: 90%;
+            }
+        }
+     
+    /* ================================
+   NEXORA REWARDS PAGE
+================================ */
+
+.rewards-page {
+    max-width: 1100px;
+    margin: auto;
+}
+
+.rewards-header {
+    margin-bottom: 20px;
+}
+
+.rewards-header h1 {
+    font-size: 32px;
+    margin-bottom: 5px;
+}
+
+.rewards-header p {
+    color: #777;
+}
+
+/* COIN BALANCE */
+
+.coin-card {
+    background: linear-gradient(135deg, #7b1fa2, #9c4dcc);
+    color: white;
+    border-radius: 20px;
+    padding: 25px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    box-shadow: 0 8px 20px rgba(123, 31, 162, 0.2);
+}
+
+.coin-left {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.coin-icon {
+    width: 65px;
+    height: 65px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+}
+
+.coin-title {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.coin-number {
+    font-size: 38px;
+    font-weight: bold;
+    margin-top: 3px;
+}
+
+.coin-label {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+/* HOW TO EARN */
+
+.earn-title {
+    text-align: center;
+    font-size: 22px;
+    margin: 25px 0 15px;
+}
+
+/* THREE MAIN CARDS */
+
+.reward-rules {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr 1fr;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.reward-rule {
+    background: white;
+    border-radius: 16px;
+    padding: 18px;
+    border: 1px solid #eee;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+.reward-rule h3 {
+    margin: 0 0 7px;
+    font-size: 17px;
+}
+
+.reward-rule p {
+    color: #666;
+    font-size: 13px;
+    margin: 0;
+}
+
+.reward-amount {
+    margin-top: 15px;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.attend-card {
+    border-top: 4px solid #2e9d50;
+}
+
+.no-show-card {
+    border-top: 4px solid #e53935;
+}
+
+.performance-card {
+    border-top: 4px solid #6a1b9a;
+}
+
+/* PERFORMANCE LEVELS */
+
+.performance-levels {
+    display: flex;
+    margin-top: 15px;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.performance-level {
+    flex: 1;
+    text-align: center;
+    padding: 10px 5px;
+    border-right: 1px solid #eee;
+}
+
+.performance-level:last-child {
+    border-right: none;
+}
+
+.performance-name {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.performance-coins {
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+/* HISTORY */
+
+.history-title {
+    font-size: 22px;
+    margin-bottom: 12px;
+}
+
+.reward-history-box {
+    background: white;
+    border-radius: 15px;
+    padding: 18px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.reward-history-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 13px 5px;
+    border-bottom: 1px solid #eee;
+}
+
+.reward-history-item:last-child {
+    border-bottom: none;
+}
+
+.history-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.history-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f1e6f7;
+}
+
+.history-reason {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.history-date {
+    font-size: 11px;
+    color: #888;
+    margin-top: 3px;
+}
+
+.history-amount {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.reward-positive {
+    color: #249447;
+}
+
+.reward-negative {
+    color: #d32f2f;
+}
+
+/* MOBILE */
+
+@media(max-width: 800px) {
+
+    .reward-rules {
+        grid-template-columns: 1fr;
+    }
+
+    .coin-card {
+        padding: 20px;
+    }
+
+    .coin-number {
+        font-size: 30px;
+    }
+
+    .performance-levels {
+        flex-wrap: wrap;
+    }
+
+    .performance-level {
+        flex: 1 1 33%;
+    }
+}    
+    </style>
+</head>
+
+<body>
+
+    <!-- LOGIN PAGE -->
+
+    <div class="login-page" id="loginPage">
+
+        <div class="login-box">
+
+            <h1>Nexora</h1>
+
+            <p>Work • Volunteer • Connect</p>
+
+            <input
+                type="email"
+                id="loginEmail"
+                placeholder="Email ID"
+            >
+
+            <input
+                type="password"
+                id="loginPassword"
+                placeholder="Password"
+            >
+
+            <button
+                onclick="login()"
+                style="width:100%;"
+            >
+                Login
+            </button>
+
+            <p style="margin-top:20px;">
+                New user?
+                <a href="#" onclick="showSignup()">
+                    Create Account
+                </a>
+            </p>
+
+        </div>
+
+    </div>
+<div id="signupForm" style="display:none;">
+
+    <h2>Create Your Account</h2>
+
+    <input type="text"
+           id="signupName"
+           placeholder="Full Name">
+
+    <input type="email"
+           id="signupEmail"
+           placeholder="Email Address">
+
+    <input type="password"
+           id="signupPassword"
+           placeholder="Password">
+
+    <input type="text"
+           id="signupHobby"
+           placeholder="Hobby">
+
+    <input type="text"
+           id="signupSkills"
+           placeholder="Skills">
+
+    <input type="text"
+           id="signupQualification"
+           placeholder="Qualification">
+
+    
+
+<input
+    type="text"
+    id="signupAvailability"
+    placeholder="Availability ex: Saturday & Sunday, 9 AM - 5 PM"
+>
+
+
+    <textarea
+           id="signupAddress"
+           placeholder="Address"></textarea>
+
+    <input type="tel"
+           id="signupContact"
+           placeholder="Contact Number">
+
+    
+    <button onclick="createAccount()" style="width:100%;">
+        Create Account
+    </button>
+
+    <p>
+        Already have an account?
+        <a href="#" onclick="showLogin()">Login</a>
+    </p>
+
+</div>
+
+    <!-- MAIN APPLICATION -->
+
+    <div class="app" id="app">
+
+        <!-- NAVIGATION -->
+
+        <nav class="navbar">
+
+            <div class="logo">
+                Nexora
+            </div>
+
+            <div class="nav-links">
+
+                <button onclick="showPage('home')">
+                    🏠 Home
+                </button>
+
+                <button onclick="showPage('create')">
+                    ➕ Post
+                </button>
+
+                <button onclick="showPage('chat')">
+                    💬 Chat
+                </button>
+
+                <button onclick="showPage('rewards')">
+                    🪙 Rewards
+                </button>
+
+                <button onclick="showPage('profile')">
+                    👤 Profile
+                </button>
+                <button onclick="logout()">
+                    🚪 Logout
+                </button>
+
+            </div>
+
+        </nav>
+
+
+        <div class="container">
+
+            <!-- HOME PAGE -->
+
+            <section id="home" class="page active">
+
+                <h1 class="page-title">
+                    Opportunities Near You
+                </h1>
+
+                <div class="search-box">
+
+                    <input
+                        type="text"
+                        id="search"
+                        placeholder="Search jobs, volunteering, skills or location..."
+                        onkeyup="searchOpportunities()"
+                    >
+
+                    <button onclick="searchOpportunities()">
+                        Search
+                    </button>
+
+                </div>
+
+
+                <div class="filters">
+
+                    <button
+                        class="filter active"
+                        onclick="filterOpportunities('all', this)"
+                    >
+                        All
+                    </button>
+
+                    <button
+                        class="filter"
+                        onclick="filterOpportunities('paid', this)"
+                    >
+                        💰 Paid
+                    </button>
+
+                    <button
+                        class="filter"
+                        onclick="filterOpportunities('volunteer', this)"
+                    >
+                        ❤️ Volunteer
+                    </button>
+
+                    <button
+                        class="filter"
+                        onclick="filterOpportunities('emergency', this)"
+                    >
+                        🚨 Emergency
+                    </button>
+
+                </div>
+
+
+                <div
+                    class="opportunity-grid"
+                    id="opportunityGrid"
+                ></div>
+
+            </section>
+
+
+            <!-- CREATE OPPORTUNITY -->
+
+            <section id="create" class="page">
+
+                <h1 class="page-title">
+                    Create Opportunity
+                </h1>
+
+                <div class="form-card">
+
+    <label>Opportunity Type</label>
+
+    <select
+    id="opportunityType"
+    onchange="updatePaymentField()"
+>
+    <option value="">Select Type</option>
+
+    <option value="paid">
+        💰 Paid
+    </option>
+
+    <option value="volunteer">
+        ❤️ Volunteer
+    </option>
+
+    <option value="emergency">
+        🚨 Emergency
+    </option>
+</select>             
+
+                    <label>Work / Activity Title</label>
+
+                    <input
+                        id="title"
+                        placeholder="Example: Python Tutor Needed"
+                    >
+
+
+                    <label>Description</label>
+
+                    <textarea
+                        id="description"
+                        rows="4"
+                        placeholder="Describe the work or activity"
+                    ></textarea>
+
+
+                    <label>Required Skills</label>
+
+                    <input
+                        id="skills"
+                        placeholder="Python, Teaching, First Aid"
+                    >
+
+
+                    <label>Location</label>
+
+                    <input
+                        id="location"
+                        placeholder="Erode"
+                    >
+
+
+                    <label>Date</label>
+
+                    <input
+                        type="date"
+                        id="date"
+                    >
+
+
+                    <label>Timing</label>
+
+                    <input
+                        id="time"
+                        placeholder="10 AM - 2 PM"
+                    >
+
+
+                    <label>Number of People Required</label>
+
+                    <input
+                        type="number"
+                        id="people"
+                        placeholder="5"
+                    >
+
+
+                    
+
+                    <div>
+    <label for="payment"> Payment Offered (₹)</label>
+
+    <input
+        type="number"
+        id="payment"
+        placeholder="Enter payment amount"
+        min="0"
+        disabled
+    >
+
+    <small id="paymentMessage" style="color:#777;">
+        Select an oppurtunity type.
+    </small>
+</div>
+
+                    <button onclick="createOpportunity()">
+                        Publish Opportunity
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- PROFILE -->
+        <section id="profile" class="page">
+
+    <div class="profile-dashboard">
+
+        <!-- PROFILE HEADER -->
+        <div class="profile-hero">
+
+            <div class="profile-photo-area">
+
+                <div class="profile-photo">
+                    👤
+                </div>
+
+                <div class="online-dot"></div>
+
+            </div>
+
+            <div class="profile-main-info">
+
+                <span class="profile-tag">
+                    Community Helper
+                </span>
+
+                <h1 id="profileName">Your Name</h1>
+
+                <p class="profile-tagline">
+                    Every act of kindness creates a ripple.
+                </p>
+
+                <div class="profile-location">
+                    <span id="profileAddress">📍 Location</span>
+                    <span id="profileAvailability">📅 Availability</span>
+                </div>
+
+            </div>
+
+
+            <!-- COINS -->
+            <div class="profile-coins">
+
+                <h4>🪙 CONNECT COINS</h4>
+
+                <div class="coin-number" id="profileCoinBalance">
+                    0
+                </div>
+
+                <p>Total Coins Earned</p>
+
+                <button onclick="showPage('rewards')">
+                    View Rewards →
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- EDIT BUTTON -->
+        <button
+            class="edit-profile-button"
+            onclick="openEditProfile()"
+        >
+            ✏️ Edit Profile
+        </button>
+
+
+        <!-- STATISTICS -->
+        <div class="profile-stats">
+
+            <div class="stat-card">
+                <div class="stat-icon">📝</div>
+                <div>
+                    <strong id="profilePosts">0</strong>
+                    <span>Posts Created</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">✓</div>
+                <div>
+                    <strong id="profileCompleted">0</strong>
+                    <span>Works Completed</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">👥</div>
+                <div>
+                    <strong id="profileHelped">0</strong>
+                    <span>People Helped</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">★</div>
+                <div>
+                    <strong id="profileRating">0.0</strong>
+                    <span>Trust Score</span>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- THREE MAIN CARDS -->
+        <div class="profile-three-columns">
+
+
+            <!-- SKILLS -->
+            <div class="profile-card">
+
+                <h2>🌱 MY SKILLS</h2>
+
+                <div id="profileSkills" class="profile-skills">
+                </div>
+
+            </div>
+
+
+            <!-- AVAILABILITY -->
+            <div class="profile-card availability-card">
+
+                <h2>📅 AVAILABILITY</h2>
+
+                <div class="availability-circle">
+                    📅
+                </div>
+
+                <p>Available on</p>
+
+                <h3 id="availabilityText">
+                    -
+                </h3>
+
+                <div class="available-status">
+                    ● Currently Available
+                </div>
+
+            </div>
+
+
+            <!-- IMPACT -->
+            <div class="profile-card">
+
+                <h2>💜 IMPACT I'VE MADE</h2>
+
+                <div class="impact-grid">
+
+                    <div class="impact-item">
+                        🌱
+                        <span>Environmental</span>
+                        <strong id="environmentalCount">0</strong>
+                    </div>
+
+                    <div class="impact-item">
+                        ❤️
+                        <span>Community</span>
+                        <strong id="communityCount">0</strong>
+                    </div>
+
+                    <div class="impact-item">
+                        👥
+                        <span>Volunteer Works</span>
+                        <strong id="volunteerCount">0</strong>
+                    </div>
+
+                    <div class="impact-item">
+                        🤝
+                        <span>People Helped</span>
+                        <strong id="peopleHelpedCount">0</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PERSONAL DETAILS -->
+        <div class="profile-card personal-details">
+
+            <h2>👤 PERSONAL DETAILS</h2>
+
+            <div class="details-grid">
+
+                <div>
+                    <span>📍 Location</span>
+                    <strong id="profileAddress2">-</strong>
+                </div>
+
+                <div>
+                    <span>📞 Contact</span>
+                    <strong id="profileContact">-</strong>
+                </div>
+
+                <div>
+                    <span>📧 Email</span>
+                    <strong id="profileEmail">-</strong>
+                </div>
+
+                <div>
+                    <span>🎓 Education</span>
+                    <strong id="profileQualification">-</strong>
+                </div>
+
+                <div>
+                    <span>🌱 Hobby</span>
+                    <strong id="profileHobby">-</strong>
+                </div>
+
+                <div>
+                    <span>💡 Interests</span>
+                    <strong>Technology, Learning, Volunteering</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- EDIT PROFILE POPUP -->
+    <div id="editProfileModal" class="edit-profile-modal">
+
+        <div class="edit-profile-box">
+
+            <h2>✏️ Edit Profile</h2>
+
+            <input
+                type="text"
+                id="editName"
+                placeholder="Name"
+            >
+
+            <input
+                type="text"
+                id="editAddress"
+                placeholder="Address"
+            >
+
+            <input
+                type="text"
+                id="editContact"
+                placeholder="Contact"
+            >
+
+            <input
+                type="text"
+                id="editQualification"
+                placeholder="Qualification"
+            >
+
+            <input
+                type="text"
+                id="editHobby"
+                placeholder="Hobby"
+            >
+
+            <input
+                type="text"
+                id="editSkills"
+                placeholder="Skills - Python, HTML, C"
+            >
+
+            <input
+                type="text"
+                id="editAvailability"
+                placeholder="Availability"
+            >
+
+            <div class="edit-buttons">
+
+                <button onclick="saveEditedProfile()">
+                    💾 Save Changes
+                </button>
+
+                <button
+                    class="cancel-edit"
+                    onclick="closeEditProfile()"
+                >
+                    Cancel
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+            <!-- REWARDS PAGE -->
+
+<!-- ================================
+     REWARDS
+================================ -->
+
+<section id="rewards" class="page">
+
+    <div class="rewards-page">
+
+        <!-- HEADER -->
+
+        <div class="rewards-header">
+
+            <h1>
+                🎁 Rewards
+            </h1>
+
+            <p>
+                Complete work, build trust and earn Connect Coins!
+            </p>
+
+        </div>
+
+
+        <!-- COIN BALANCE -->
+
+        <div class="coin-card">
+
+            <div class="coin-left">
+
+                <div class="coin-icon">
+                    🪙
+                </div>
+
+                <div>
+
+                    <div class="coin-title">
+                        YOUR CONNECT COINS
+                    </div>
+
+                    <div
+                        class="coin-number"
+                        id="coinBalance"
+                    >
+                        0
+                    </div>
+
+                    <div class="coin-label">
+                        Available Coins
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div style="font-size:35px;">
+                💰
+            </div>
+
+        </div>
+
+
+        <!-- HOW TO EARN -->
+
+        <h2 class="earn-title">
+            How to Earn Points
+        </h2>
+
+
+        <div class="reward-rules">
+
+
+            <!-- ATTENDANCE -->
+
+            <div class="reward-rule attend-card">
+
+                <h3>
+                    📍 Show Up & Be There
+                </h3>
+
+                <p>
+                    Reach the mentioned venue and complete the work.
+                </p>
+
+                <div class="reward-amount reward-positive">
+                    +100 🪙
+                </div>
+
+            </div>
+
+
+            <!-- PERFORMANCE -->
+
+            <div class="reward-rule performance-card">
+
+                <h3>
+                    🏅 Performance Rewards
+                </h3>
+
+                <p>
+                    Earn more coins based on your work quality.
+                </p>
+
+
+                <div class="performance-levels">
+
+                    <div class="performance-level">
+
+                        <div class="performance-name">
+                            Basic
+                        </div>
+
+                        <div class="performance-coins reward-positive">
+                            +50
+                        </div>
+
+                    </div>
+
+
+                    <div class="performance-level">
+
+                        <div class="performance-name">
+                            Fair
+                        </div>
+
+                        <div class="performance-coins reward-positive">
+                            +100
+                        </div>
+
+                    </div>
+
+
+                    <div class="performance-level">
+
+                        <div class="performance-name">
+                            Good
+                        </div>
+
+                        <div class="performance-coins reward-positive">
+                            +200
+                        </div>
+
+                    </div>
+
+
+                    <div class="performance-level">
+
+                        <div class="performance-name">
+                            Very Good
+                        </div>
+
+                        <div class="performance-coins reward-positive">
+                            +300
+                        </div>
+
+                    </div>
+
+
+                    <div class="performance-level">
+
+                        <div class="performance-name">
+                            Excellent
+                        </div>
+
+                        <div class="performance-coins reward-positive">
+                            +400
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- NO SHOW -->
+
+            <div class="reward-rule no-show-card">
+
+                <h3>
+                    ⚠️ No-Show
+                </h3>
+
+                <p>
+                    Accepting a work but not reaching the venue.
+                </p>
+
+                <div class="reward-amount reward-negative">
+                    -100 🪙
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- HISTORY -->
+
+        <h2 class="history-title">
+            Recent Earnings
+        </h2>
+
+
+        <div
+            class="reward-history-box"
+            id="rewardHistory"
+        >
+
+            <p>
+                No rewards yet. Complete an opportunity to earn coins! 🪙
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+         
+
+
+            <!-- CHAT -->
+
+            <section id="chat" class="page">
+
+                <h1 class="page-title">
+                    Opportunity Chat
+                </h1>
+
+                <div class="chat-container">
+
+                    <h3>
+                        Python Tutor Opportunity
+                    </h3>
+
+                    <div
+                        class="messages"
+                        id="messages"
+                    >
+
+                        <div class="message">
+                            Hi! Are you available
+                            Saturday?
+                        </div>
+
+                        <div class="message mine">
+                            Yes, I am available.
+                        </div>
+
+                    </div>
+
+
+                    <div class="chat-input">
+
+                        <input
+                            id="chatMessage"
+                            placeholder="Type a message..."
+                        >
+
+                        <button onclick="sendMessage()">
+                            Send
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        
+
+    </script>
+    <script src="script.js"></script>
+
+</body>
+</html>
